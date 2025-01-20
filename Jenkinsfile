@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        WORKSPACE = "C:\\AdityaPersonal\\nexTurn\\AdityaSharma_NexTurn_Assignments\\M6_Jenkins_Assignments\\Exercise_2\\vite-project"
+        WORKSPACE = "H:\\nextrurn\\new_jenkins_home\\workspace\\EXERCISE_4"
     }
     stages {
         stage('Changing Directory') {
@@ -9,14 +9,11 @@ pipeline {
                 script {
                     echo "Changing Directory.."
                     dir(env.WORKSPACE) {
-                        bat "cd ${env.WORKSPACE}"
                         echo "Directory changed to ${env.WORKSPACE}"
                         echo "Installing Dependencies.."
                         bat 'npm install'
                         echo "Running Tests.."
                         bat 'npm test'
-                        echo "Building the project.."
-                        bat 'npm run build'
                         echo "Building the project.."
                         bat 'npm run build'
                         echo "Deploying the application by copying the build folder to a deployment directory..."
@@ -27,13 +24,13 @@ pipeline {
         }
     }
     post {
-        always{
+        always {
             echo 'This will always run after the pipeline finishes.'
         }
-        success{
+        success {
             echo 'This will run if the pipeline succeeds.'
         }
-        failure{
+        failure {
             echo 'This will run if the pipeline fails.'
         }
     }
